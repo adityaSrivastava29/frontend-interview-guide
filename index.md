@@ -38,5 +38,6 @@ layout: default
 - [⚡ Redux & RTK Complete Guide — Plain Redux → RTK → RTK Query](react-interview/redux-rtk-guide)
 
 ---
+## 💻 Coding Interview Questions (JS & React)
 
-
+- [🔥 JS & React Coding Questions — Output Puzzles, Polyfills, Machine Coding & Tricky Console Logs](JS-Interview-Questions/coding-questions)
