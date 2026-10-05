@@ -60,15 +60,50 @@ and returns that element.
 let arr4 = [1, 2, 3];
 let firstElement = arr4.shift(); // arr4 is [2, 3], firstElement is 1
 ```
-5. `splice`: Adds or removes elements from the array at a specific
-index position. 
-```javascript
-let arr5 = [1, 2, 3, 4, 5];
-// Remove 2 elements starting from index 1
-let removed = arr5.splice(1, 2); // arr5 is [1, 4, 5], removed is [2, 3]
-// Add elements at index 1
-arr5.splice(1, 0, 2, 3); // arr5 is [1, 2, 3, 4, 5]
-```
+5. `splice`: Changes the contents of an array in place by removing, replacing, or adding elements. It modifies the original array and returns a new array containing the deleted elements.
+
+   **Syntax:**
+   ```javascript
+   array.splice(start, deleteCount, item1, item2, ..., itemN)
+   ```
+
+   **Parameters:**
+   - `start`: The zero-based index at which to start changing the array. If negative, it counts backward from the end of the array (e.g., `-1` is the last element).
+   - `deleteCount` *(Optional)*: An integer indicating the number of elements to remove from `start`. If omitted, all elements from `start` to the end of the array are removed. If `0` or negative, no elements are removed.
+   - `item1, item2, ...` *(Optional)*: The elements to add to the array, beginning at the `start` index. If omitted, `splice()` will only remove elements.
+
+   **Common Use Cases:**
+   - **1. Removing Elements:** Provide the `start` index and the number of items to delete.
+     ```javascript
+     const fruits = ['Apple', 'Banana', 'Cherry', 'Date'];
+     // Remove 2 elements starting at index 1 ('Banana' and 'Cherry')
+     const deleted = fruits.splice(1, 2);
+     console.log(fruits);  // Output: ['Apple', 'Date'] (Modified original array)
+     console.log(deleted); // Output: ['Banana', 'Cherry'] (Returned deleted elements)
+     ```
+   - **2. Adding Elements (Without Deleting):** Set `deleteCount` to `0` to insert new elements at a specific index without removing existing ones.
+     ```javascript
+     const fruits = ['Apple', 'Date'];
+     // Insert 'Banana' and 'Cherry' at index 1, deleting 0 elements
+     fruits.splice(1, 0, 'Banana', 'Cherry');
+     console.log(fruits); // Output: ['Apple', 'Banana', 'Cherry', 'Date']
+     ```
+   - **3. Replacing Elements:** Provide a `deleteCount` greater than `0` along with the new items to swap out elements.
+     ```javascript
+     const fruits = ['Apple', 'Banana', 'Cherry', 'Date'];
+     // Replace 2 elements starting at index 1 with 'Kiwi'
+     fruits.splice(1, 2, 'Kiwi');
+     console.log(fruits); // Output: ['Apple', 'Kiwi', 'Date']
+     ```
+
+   #### `splice()` vs `slice()`
+   A common point of confusion is mixing up `splice()` with `slice()`:
+
+   | Feature | `splice()` | `slice()` |
+   | :--- | :--- | :--- |
+   | **Mutation** | Mutates the original array in place. | Does not mutate; returns a shallow copy. |
+   | **Primary Use** | Adding, removing, or replacing elements. | Extracting a subsection of an array. |
+   | **Return Value** | An array containing the deleted elements. | A new array containing the extracted elements. |
 6. `sort`: Sorts the elements of the array in-place based on a given sorting
 criteria. 
 ```javascript
@@ -108,11 +143,12 @@ let arrA = [1, 2];
 let arrB = [3, 4];
 let merged = arrA.concat(arrB); // merged is [1, 2, 3, 4]
 ```
-2.  `slice`: Returns a shallow copy of a portion of an array into a new array object.
+2.  `slice`: Returns a shallow copy of a portion of an array into a new array object without modifying the original array.
 ```javascript
 let arrC = [1, 2, 3, 4, 5];
 let sliced = arrC.slice(1, 3); // sliced is [2, 3]
 ```
+> **Note:** Unlike `splice()`, `slice()` does not modify the original array. (See [`splice()` vs `slice()` comparison](#splice-vs-slice) under mutating methods).
 3.  `map`: Creates a new array populated with the results of calling a provided function on every element in the calling array.
 ```javascript
 let arrD = [1, 2, 3];

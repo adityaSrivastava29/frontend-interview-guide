@@ -30,6 +30,7 @@ layout: default
 
 ## 🚀 React Interview Handbook (Senior level)
 
+- [⚛️ React Basics — Hooks, State, Redux, Virtual DOM, Routing, Performance & Tricky Questions](react-interview/react-basics)
 - [Part 1 — Fundamentals, Core Concepts, Hooks, Fiber, Performance](react-interview/react-handbook-part1)
 - [Part 2 — State Management, Router, API Handling, Patterns, System Design](react-interview/react-handbook-part2)
 - [Part 3 — Machine Coding, Testing, Security, Build & Deploy, Micro Frontends](react-interview/react-handbook-part3)
@@ -38,7 +39,4 @@ layout: default
 
 ---
 
-## 📖 Other Resources
 
-- [Full Stack MERN Interview Prep](JS-Interview-Questions/interview_preparation)
-- [Namaste React Notes](https://aditya29.notion.site/Namaste-Engineering-260bc22ab99080d787f6d8bee9c35d8d)
