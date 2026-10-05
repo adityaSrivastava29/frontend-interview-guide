@@ -39,7 +39,4 @@ layout: default
 
 ---
 
-## 📖 Other Resources
 
-- [Full Stack MERN Interview Prep](JS-Interview-Questions/interview_preparation)
-- [Namaste React Notes](https://aditya29.notion.site/Namaste-Engineering-260bc22ab99080d787f6d8bee9c35d8d)
