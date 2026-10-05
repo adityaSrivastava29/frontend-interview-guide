@@ -352,6 +352,14 @@ async function retryAsync(asyncFn, maxRetries = 3, delay = 1000) {
 }
 ```
 
+**Interview follow-up: what does the timeout actually cover?**
+
+In the example above, `Promise.race` can reject the wrapper without cancelling the underlying request. Also, `fetch()` resolves when response headers arrive, so the later `data.json()` body read is outside that race. What if headers arrive quickly but the body stalls?
+
+For a network deadline that also covers reading the body, pass an `AbortController` signal to `fetch`, keep the timer active until `await response.json()` settles, and clear the timer and any external abort listener in `finally`. Forward caller cancellation to the same controller. Aborting the client request does not roll back work already performed by the server.
+
+Optional coding practice: [Fetch JSON with Timeout + Abort](https://frontendatlas.com/javascript/coding/js-fetch-json-timeout) (free question and full solution), combining the timeout, caller cancellation, HTTP error handling, and cleanup.
+
 ## Common Pitfalls
 
 ### Pitfall 1: Forgetting await
