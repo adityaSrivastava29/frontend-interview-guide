@@ -348,6 +348,75 @@ console.log('script end');
 // Macrotask phase: setTimeout
 ```
 
+### Q3.5: Async IIFE with `await null`, `queueMicrotask`, and Delayed Timers
+
+```javascript
+console.log("A");
+
+setTimeout(() => {
+  console.log("B");
+}, 2000);
+
+Promise.resolve().then(() => {
+  console.log("C");
+});
+
+queueMicrotask(() => {
+  console.log("D");
+});
+
+(async () => {
+  console.log("E");
+  await null; // wraps in Promise.resolve(null) & pauses IIFE
+  console.log("F");
+})();
+
+setTimeout(() => {
+  console.log("G");
+  Promise.resolve().then(() => {
+    console.log("H");
+  });
+}, 2000);
+
+// ─── OUTPUT ───
+// A
+// E
+// C
+// D
+// F
+// (after ~2000ms delay)
+// B
+// G
+// H
+
+// ─── STEP BY STEP ───
+// 1. Sync Phase (Call Stack):
+//    - "A" logs immediately.
+//    - setTimeout #1 registers a 2000ms timer (macrotask).
+//    - Promise.resolve().then(...) queues "C" in Microtask Queue.
+//    - queueMicrotask(...) queues "D" in Microtask Queue.
+//    - (async () => { ... })() runs synchronously:
+//      * "E" logs immediately.
+//      * `await null` wraps null into Promise.resolve(null), pauses the IIFE,
+//        and queues the continuation ("F") into the Microtask Queue.
+//    - setTimeout #2 registers another 2000ms timer (macrotask).
+//
+// 2. Microtask Queue Phase (drained before any macrotask):
+//    - Microtask 1: logs "C"
+//    - Microtask 2: logs "D"
+//    - Microtask 3: resumes async IIFE → logs "F"
+//
+// 3. Macrotask Phase (after ~2000ms):
+//    - Timer #1 callback runs → logs "B"
+//    - Timer #2 callback runs → logs "G", schedules "H" to Microtask Queue
+//    - Microtask queue drained immediately before next macrotask → logs "H"
+//
+// ─── KEY INTERVIEW CONCEPTS ───
+// - `await <expr>` always yields control back to the caller and places the rest of the function in the Microtask Queue.
+// - Async functions execute SYNCHRONOUSLY until the first `await`.
+// - `queueMicrotask()` and `Promise.resolve().then()` push into the same microtask queue (FIFO).
+```
+
 ---
 
 ## 🔥 4. `this` Keyword — Dynamic vs Lexical Binding
