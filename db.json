@@ -1,0 +1,87 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Aditya"
+    },
+    {
+      "id": 2,
+      "name": "Rahul"
+    },
+    {
+      "id": 3,
+      "name": "Priya"
+    }
+  ],
+
+  "orders": [
+    {
+      "id": 101,
+      "userId": 1,
+      "productId": 10,
+      "supplierId": 100
+    },
+    {
+      "id": 102,
+      "userId": 1,
+      "productId": 20,
+      "supplierId": 200
+    },
+    {
+      "id": 103,
+      "userId": 2,
+      "productId": 30,
+      "supplierId": 300
+    },
+    {
+      "id": 104,
+      "userId": 3,
+      "productId": 40,
+      "supplierId": 400
+    },
+    {
+      "id": 105,
+      "userId": 3,
+      "productId": 10,
+      "supplierId": 100
+    }
+  ],
+
+  "products": [
+    {
+      "id": 10,
+      "name": "Laptop"
+    },
+    {
+      "id": 20,
+      "name": "Mobile"
+    },
+    {
+      "id": 30,
+      "name": "Headphones"
+    },
+    {
+      "id": 40,
+      "name": "Monitor"
+    }
+  ],
+
+  "suppliers": [
+    {
+      "id": 100,
+      "name": "Dell Supplier"
+    },
+    {
+      "id": 200,
+      "name": "Samsung Supplier"
+    },
+    {
+      "id": 300,
+      "name": "Sony Supplier"
+    },
+    {
+      "id": 400,
+      "name": "LG Supplier"
+    }
+  ]
+}
